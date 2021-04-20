@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Resizer</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-vlOMx0hKjUCl4WzuhIhSNZSm2yQCaf0mOU1hEDK/iztH3gU4v5NMmJln9273A6Jz" crossorigin="anonymous">
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://use.fontawesome.com/aac5c45839.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js" integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pageContainer">
+    <section>
+		<div class="panelContainer">
+            <div class="panelLeft" id="frame1" contenteditable="true">
+				<div id="fullText">
+				    <div id="disappear" class="text1">
+						<p>Presenting the all new Enterprise Platform</p>
+						<p style="font-size:32px">Vi business-Mobility</p>
+					</div>
+					<div id="disappear2" class="text2">
+					     <p style="font-size:32px">Profile Management</p>	
+					</div>
+				<!--<div class="head1">
+					<h1 id="txtColorChange">Create & Manage User Groups</h1>
+				</div>
+				<div class="text1">
+					<ul>
+						<li>Create groups basis designation and department</li>
+						<li>Raise group-level service requests</li>
+						<li>Manage group-level settings and information</li>
+					</ul>
+				</div>-->
+				<div class="resizer NE"></div>
+				<div class="resizer NW"></div>
+				<div class="resizer SW"></div>
+				<div class="resizer SE"></div>
+			</div>
+			</div>
+
+            <div class="splitter"></div>
+
+            <div class="panelRight form-group">
+				<!--Action Panel-->
+        		<div class="accordion-div">
+					<div class="accord">
+						<div class="btnalign1">
+							<button class="play-button" id="js-toggle" type="button"></button>
+							<i class="fa fa-repeat btn-align-rep" aria-hidden="true"></i>						
+							
+						</div>
+						<div class="btnalign2">
+							<span class="btn-align fileinput-button">
+							<span><i class="fa fa-upload" aria-hidden="true"></i></span>
+							<input type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif,">
+							</span>
+						<div class="dropdown text-center">
+									<i class="fa fa-plus btn-align center-block" data-toggle="dropdown" aria-hidden="true"></i>
+									<div class="dropdown-content dropdown-menu-center">
+									<span type="button" class="btnd btn-succ fileinput-button">
+										<span>File</span>
+										<input type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif,">
+									</span>
+									<span type="button" class="btnd btn-succ" id="head">section header</span>
+									<span type="button" class="btnd btn-succ" id="scomp">strip</span>
+									<span type="button" class="btnd btn-succ" id="call">call out</span>
+									<span type="button" class="btnd btn-succ" id="curs">finger control</span>
+									<span type="button" class="btnd btn-succ" id="pcomp">plain text</span>
+									<span type="button" class="btnd btn-succ" onclick="comp()">play pause controls</span>
+									<span type="button" class="btnd btn-succ" onclick="comp()"><a href="#"> scratch</a></span>
+									
+									</div>
+						</div>
+					</div>
+       			    </div>
+
+					<!--Components Panel-->
+					<div id="frame2" class="form-group">
+						<div class="list-group" id="player-list"></div>
+					<!-- <button type="button" id="add" aria-label="Add">Add</button> -->
+				  	</div>
+				  <button class="container bWidth"><h5>Settings Panel</h5></button>
+				  <div id="frame3" class="form-group">
+					<!-- Tab form of Settings panel -->			  
+					  <ul class="nav nav-tabs set">
+						  <li class="settings"><a data-toggle="tab" href="#properties">Properties</a></li>
+						  <li class="settings"><a data-toggle="tab" href="#entry">Entry</a></li>
+						  <li class="settings"><a data-toggle="tab" href="#exit">Exit</a></li>
+						  <li id="t1" class="settings invisible"><a data-toggle="tab" href="#text">Text</a></li>
+					  </ul>
+				
+					  <div class="tab-content">
+				
+						  <!-- Entry tab -->
+						  <div id="entry" class="tab-pane fade in active bWidth">
+							<h5>Entry Transition Settings</h5>
+							<div class="desc">Entry Animation Type:</div>	
+						  <select name="aEntryType" id="aEntryType" >
+							  <option value="slide">Slide</option>
+							  <option value="bounce">Bounce</option>
+							  <option value="fadeout">Fade Out</option>
+						  </select>
+				
+						  <div class="desc">Entry Animation Duration:</div>
+						  <input type="text" class="ano" id="aEntryDur" value='3'>
+						  </div>
+				
+						  <!-- Exit tab -->
+				
+						  <div id="exit" class="tab-pane fade bWidth">
+							<h5>Exit Transition Settings</h5>
+							<div class="desc">Exit Animation Type:</div>
+						  <select name="aExitType" id="aExitType">
+							  <option value="fadeout">Fade Out</option>
+							  <option value="bounce">Bounce</option>
+							  <option value="slide">Slide</option>
+						  </select>
+						  <div class="desc">Exit Animation Duration:</div>
+						  <input type="text" class="ano" id="aExitDur" value='8'>
+						  </div>
+				
+				
+						  <!-- Properties Tab -->
+						  
+						  
+						  <div id="properties" class="tab-pane fade bWidth">
+							<h5>Properties</h5>
+							<div class="desc">Animation Delay:</div>
+						  <input type="text" class="ano" id="aDelay" value='1'>
+						  
+				
+						  <div class="desc">Stationary Time:</div>
+						  <input type="text" class="ano" id="aStatTime" value='2'>
+							
+						  <div  class="lside">
+							  <div class="desc">Width :</div>
+							  <input type="text" id="frameWidth" value="700" size="10px">
+						  </div>
+						  <div class="rside">	
+							  <div class="desc">Height :</div>
+							  <input type="text" id="frameHeight" value="450" size="10px">
+						  </div>
+				
+						
+						  <div class="lside">
+							  <div class="desc">x-value :</div>
+							  <input type="text" id="positionX" value="10" size="10px">
+						  </div>
+						  <div class="rside">
+							  <div class="desc">y-value:</div>
+							  <input type="text" id="positionY" value="02" size="10px">
+						  </div>
+						  </div> 
+						  
+						  <!--Text Formatting-->
+						  <!-- <script>
+							  var componentHighlighted = document.querySelector(".highlighted");
+						  </script> -->
+
+
+						  <div id="text" class="tab-pane fade bWidth">
+							<h5>Text Properties</h5>
+							
+							<div class="toolbar">
+							 <ul class="tool-list">
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command='justifyLeft'
+										 class="tool--btn">
+										 <i class=' fas fa-align-left'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command='justifyCenter' 
+										 class="tool--btn">
+										 <i class=' fas fa-align-center'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command="bold" 
+										 class="tool--btn">
+										 <i class=' fas fa-bold'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command="italic"
+										 class="tool--btn">
+										 <i class=' fas fa-italic'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command="underline"
+										 class="tool--btn">
+										 <i class=' fas fa-underline'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command="insertOrderedList"
+										 class="tool--btn">
+										 <i class=' fas fa-list-ol'></i>
+									 </button>
+								 </li>
+								 <li class="tool">
+									 <button 
+										 type="button" 
+										 data-command="insertUnorderedList"
+										 class="tool--btn">
+										 <i class=' fas fa-list-ul'></i>
+									 </button>
+								 </li>
+							 </ul>
+							 <div class="desc">Text Size: </div> 
+							 <select id="textSize" onchange="execCommandWithArg('fontSize', this.value);">
+								 <option value="1">1</option>
+								 <option value="2">2</option>
+								 <option value="3">3</option>
+								 <option value="4">4</option>
+								 <option value="5">5</option>
+								 <option value="6">6</option>
+								 <option value="7">7</option>
+							 </select>
+							 &nbsp;
+							 <div class="desc">Text Color:</div>
+							  <input id="textColor" type="color" onchange="execCommandWithArg('foreColor', this.value);">
+							 <br>
+							 <div class="desc">Text Font: </div>
+							 <select id="fontName" onchange="execCommandWithArg('fontName', this.value);">
+								   <option value="Georgia">Georgia</option>
+								   <option value="Palatino Linotype">Palatino Linotype</option>
+								   <option value="Book Antiqua">Book Antiqua</option>
+								   <option value="Times New Roman">Times New Roman</option>
+								   <option value="Arial">Arial</option>
+								   <option value="Helvetica">Helvetica</option>
+								   <option value="Arial Black">Arial Black</option>
+								   <option value="Impact">Impact</option>
+								   <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+								   <option value="Tahoma">Tahoma</option>
+								   <option value="Verdana">Verdana</option>
+								   <option value="Lucida Console">Lucida Console</option>
+							 </select>
+							 &nbsp;
+							 <div class="desc">Heading Size: </div>
+							 <select id= "formatBlock" onchange="execCommandWithArg('formatBlock', this.value);">
+								 <option value="H1">H1</option>
+								 <option value="H2">H2</option>
+								 <option value="H3">H3</option>
+								 <option value="H4">H4</option>
+								 <option value="H5">H5</option>
+								 <option value="H6">H6</option>
+							 </select>
+						 </div>
+					  </div>
+				  </div>
+				 </div>				
+			</div>
+        </div>
+    </section>
+    </div>
+
+	<!-- partial -->
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='https://rawgit.com/RickStrahl/jquery-resizable/master/src/jquery-resizable.js'></script>
+	<script src="js/previewPanel.js"></script>
+	<script src="js/actionPanel.js"></script>
+	<script src="js/eventlistener.js"></script>	
+	<script src="js/components.js"></script>
+	<script src="js/highlighter.js"></script>	
+	<script src="js/settings.js"></script>	
+	<script src="js/text.js"></script>
+	<script src="js/values.js"></script>
+</body>
+</html>
